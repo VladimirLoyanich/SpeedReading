@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_settings"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textSize="@dimen/BigText"
+        android:text="@string/settings_TextSize"
+        android:id="@+id/textView"
+        android:gravity="center|left"
+        android:paddingLeft="10dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:background="#ffddac51" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="@dimen/NormalText"
+            android:text="@string/settings_TextSize_Big"
+            android:id="@+id/radioButtonBigText"
+            android:background="#fff1e7cc"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="@dimen/NormalText"
+            android:text="@string/settings_TextSize_Normal"
+            android:id="@+id/radioButtonNormalText"
+            android:background="#fff1e7cc"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="@dimen/NormalText"
+            android:text="@string/settings_TextSize_Small"
+            android:id="@+id/radioButtonSmallText"
+            android:background="#fff1e7cc"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+
+
+
+
+
+
+</LinearLayout>

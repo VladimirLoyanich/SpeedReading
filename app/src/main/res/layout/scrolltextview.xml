@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.vladimirloyanich.speedreading.ScrollTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="25dp"
+    android:id="@+id/Scroll_Text_View"
+    android:layout_alignParentStart="true"
+    android:longClickable="false"
+    android:textSize="@dimen/BigText">
+
+</com.vladimirloyanich.speedreading.ScrollTextView>
