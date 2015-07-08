@@ -52,21 +52,21 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
         // load text for test from Storage class
         textScrolling = new StorageClass().getStorageText();
         //create link on RelativeLayout to add widget
-        storageView = (RelativeLayout) findViewById(R.id.storage); //add
+        storageView = (RelativeLayout) findViewById(R.id.storage);
 
         //create widget text view user name
-        user = (TextView) LayoutInflater.from(this).inflate(R.layout.textviewuser, null); //add
-        storageView.addView(user);   //add
+        user = (TextView) LayoutInflater.from(this).inflate(R.layout.textviewuser, null);
+        storageView.addView(user);
         user.setText(getResources().getString(R.string.UserTest) + " " +UserName);
-        TextViewParams = (RelativeLayout.LayoutParams) user.getLayoutParams(); //add
-        TextViewParams.leftMargin = (int) getResources().getDimension(R.dimen.TextViewLeftMargin); //add
+        TextViewParams = (RelativeLayout.LayoutParams) user.getLayoutParams();
+        TextViewParams.leftMargin = (int) getResources().getDimension(R.dimen.TextViewLeftMargin);
         //create widget text view user Result test
-        userResult = (TextView) LayoutInflater.from(this).inflate(R.layout.textviewuserresult, null); //add
-        storageView.addView(userResult);   //add
+        userResult = (TextView) LayoutInflater.from(this).inflate(R.layout.textviewuserresult, null);
+        storageView.addView(userResult);
         userResult.setText(getResources().getString(R.string.UserTestResult) + "");
         TextViewResultParams = (RelativeLayout.LayoutParams) userResult.getLayoutParams(); //add
-        TextViewResultParams.leftMargin = (int) getResources().getDimension(R.dimen.TextViewLeftMargin); //add
-        TextViewResultParams.topMargin = (int) getResources().getDimension(R.dimen.TextViewTopMargin); //add
+        TextViewResultParams.leftMargin = (int) getResources().getDimension(R.dimen.TextViewLeftMargin);
+        TextViewResultParams.topMargin = (int) getResources().getDimension(R.dimen.TextViewTopMargin);
     }
 
     public void ClickButtonStart(View view){
@@ -75,12 +75,12 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
         //true if click Start Button
         if((counterStartStop%2)==0){
             imageBook.startAnimation(animStart);
-            storageView.removeView(user); //add
-            storageView.removeView(userResult); //add
+            storageView.removeView(user);
+            storageView.removeView(userResult);
         //false if click Stop Button
         }else {
-            storageView.removeView(ScrollView); //add
-            storageView.removeView(SeekBarView); //add
+            storageView.removeView(ScrollView);
+            storageView.removeView(SeekBarView);
             timer.cancel();
             stringTimer.setText("");
             startTest=false;
@@ -90,8 +90,8 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
     }
     private void finishTest(){
         counterStartStop++;
-        storageView.removeView(ScrollView); //add
-        storageView.removeView(SeekBarView); //add
+        storageView.removeView(ScrollView);
+        storageView.removeView(SeekBarView);
         timer.cancel();
         stringTimer.setText("");
         startButton.setVisibility(View.GONE);
@@ -105,18 +105,19 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
 
     @Override
     public void onAnimationEnd(Animation animation) {
+        //run the test after the animation
         if((counterStartStop%2)==0){
             //create widget scroll text view
-            ScrollView = (ScrollTextView)LayoutInflater.from(this).inflate(R.layout.scrolltextview, null); //add
-            SeekBarView=(SeekBar)LayoutInflater.from(this).inflate(R.layout.seekbar,null); //add
+            ScrollView = (ScrollTextView)LayoutInflater.from(this).inflate(R.layout.scrolltextview, null);
+            SeekBarView=(SeekBar)LayoutInflater.from(this).inflate(R.layout.seekbar,null);
             SeekBarView.setOnSeekBarChangeListener(this);
-            storageView.addView(ScrollView);   //add
-            ScrollTextViewParams = (RelativeLayout.LayoutParams) ScrollView.getLayoutParams(); //add
-            ScrollTextViewParams.topMargin = (int)getResources().getDimension(R.dimen.ScrollTextViewTopMargin); //add
+            storageView.addView(ScrollView);
+            ScrollTextViewParams = (RelativeLayout.LayoutParams) ScrollView.getLayoutParams();
+            ScrollTextViewParams.topMargin = (int)getResources().getDimension(R.dimen.ScrollTextViewTopMargin);
 
-            storageView.addView(SeekBarView);   //add
-            SeekBarTextViewParams = (RelativeLayout.LayoutParams) SeekBarView.getLayoutParams(); //add
-            SeekBarTextViewParams.topMargin= (int)getResources().getDimension(R.dimen.SeekBarTextViewTopMargin);   //add
+            storageView.addView(SeekBarView);
+            SeekBarTextViewParams = (RelativeLayout.LayoutParams) SeekBarView.getLayoutParams();
+            SeekBarTextViewParams.topMargin= (int)getResources().getDimension(R.dimen.SeekBarTextViewTopMargin);
             SeekBarTextViewParams.width=(int)getResources().getDimension(R.dimen.SeekBarView_width);
             SeekBarTextViewParams.height=(int)getResources().getDimension(R.dimen.SeekBarView_height);
             SeekBarTextViewParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
@@ -125,13 +126,15 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
             startButton.setText(R.string.Stop_test);
             ScrollView.pauseScroll();
             ScrollView.setText(textScrolling);
+            ScrollView.setRndDuration(59000);
             ScrollView.startScroll();
             timerStart(stringTimer);
+        //stop test and return to the Activiti results
         }else {
             startButton.setVisibility(View.VISIBLE);
             startButton.setText(R.string.Start_test);
-            storageView.addView(user);   //add
-            storageView.addView(userResult);   //add
+            storageView.addView(user);
+            storageView.addView(userResult);
             userResult.setText(getResources().getString(R.string.UserTestResult)+ "");}
     }
 
@@ -186,6 +189,10 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
         // as you specify a parent activity in AndroidManifest.xml.
         finish();
         return super.onOptionsItemSelected(item);}
+
+    public int SetSpeed(String StringLength){
+        return 12;
+    }
 
 
 }

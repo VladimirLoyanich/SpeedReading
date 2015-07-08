@@ -19,7 +19,7 @@ public class ScrollTextView extends TextView {
     private Scroller mSlr;
 
     // milliseconds for a round of scrolling
-    private int mRndDuration = 95000;
+    private int mRndDuration = 60000;
 
     // the X offset when paused
     private int mXPaused = 0;
@@ -159,6 +159,8 @@ public int getPozition (){
     }
 
     public void setRndDuration(int duration) {
+        this.mRndDuration=duration;
+        /*
         switch (duration){
             case 0:this.mRndDuration=95000;break;
             case 1:this.mRndDuration=95000;break;
@@ -184,7 +186,7 @@ public int getPozition (){
             case 21:this.mRndDuration=120000;break;
             default:this.mRndDuration=140000;break;
         }
-//        this.mRndDuration = duration;
+//        this.mRndDuration = duration;*/
     }
 
     public boolean isPaused() {
