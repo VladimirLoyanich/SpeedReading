@@ -33,6 +33,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
     private ScrollTextView ScrollView;
     RelativeLayout.LayoutParams ScrollTextViewParams,SeekBarTextViewParams,TextViewParams,TextViewResultParams;
     private String textScrolling, UserName;
+    private StorageClass StringStorage = new StorageClass();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
         stringTimer = (TextView) findViewById(R.id.stringTimer);
         startButton = (Button) findViewById(R.id.button_Start);
         // load text for test from Storage class
-        textScrolling = new StorageClass().getStorageText();
+        textScrolling = StringStorage.getStorageText();
         //create link on RelativeLayout to add widget
         storageView = (RelativeLayout) findViewById(R.id.storage);
 
@@ -126,7 +127,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
             startButton.setText(R.string.Stop_test);
             ScrollView.pauseScroll();
             ScrollView.setText(textScrolling);
-            ScrollView.setRndDuration(59000);
+            ScrollView.setRndDuration(1,StringStorage.getTextSize());
             ScrollView.startScroll();
             timerStart(stringTimer);
         //stop test and return to the Activiti results
@@ -162,7 +163,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if(startTest){
             ScrollView.pauseScroll();
-            ScrollView.setRndDuration(progress);
+            ScrollView.setRndDuration(progress,StringStorage.getTextSize());
             ScrollView.resumeScroll();
         }
     }
