@@ -17,7 +17,7 @@ public class StorageClass {
     public String getStorageText(){
         return storageString;
     }
-    public Integer getTextSize(){
+    public double getTextSize(){
         return storageString.length();
     }
 }

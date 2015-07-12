@@ -12,55 +12,72 @@
         android:background="@drawable/menu"
         tools:ignore="ContentDescription" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/imageCorner"
-            android:background="@drawable/corner_book"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/TextViewUserName"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentEnd="true"
-            android:text="@string/username"
-            android:textSize="@dimen/BigText"
-            android:background="@drawable/bookmark"
-            android:layout_marginTop="28dp"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/ButtonUserName"
-            android:layout_width="300dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/ButtonUserName"
-            android:textSize="@dimen/NormalText"
-            android:background="#fff1e7cc"
-            android:textStyle="bold"
-            android:clickable="true"
-            android:layout_below="@id/TextViewUserName"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_alignEnd="@id/imageCorner"
-            android:height="1dp" />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageCorner"
+                android:background="@drawable/corner_book"
+                tools:ignore="ContentDescription" />
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/TextViewUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="@string/username"
+                    android:textSize="@dimen/BigText"
+                    android:background="@drawable/bookmark"
+                    android:layout_marginTop="28dp"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/ButtonUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="@string/ButtonUserName"
+                    android:textSize="@dimen/NormalText"
+                    android:background="#fff1e7cc"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:layout_marginTop="10dp"
+                    android:height="1dp" />
+
+                <Button
+                    android:id="@+id/button_Settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/Main_Button_Settings"
+                    android:onClick="Settings"
+                    android:textSize="@dimen/NormalText"
+                    android:background="#fff1e7cc"
+                    android:alpha="1"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_Test_Speed_Reading"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/imageCorner"
             android:text="@string/Start_test_speed_reading"
             android:onClick="TestSpeedReading"
             android:textSize="@dimen/NormalText"
@@ -69,23 +86,7 @@
             android:layout_marginTop="10dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/button_Settings"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/button_Test_Speed_Reading"
-            android:layout_marginTop="10dp"
-            android:text="@string/Main_Button_Settings"
-            android:onClick="Settings"
-            android:textSize="@dimen/NormalText"
-            android:background="#fff1e7cc"
-            android:alpha="1"
-            android:textStyle="bold" />
 
-
-
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>

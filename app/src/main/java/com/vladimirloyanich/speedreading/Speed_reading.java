@@ -122,12 +122,13 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
             SeekBarTextViewParams.width=(int)getResources().getDimension(R.dimen.SeekBarView_width);
             SeekBarTextViewParams.height=(int)getResources().getDimension(R.dimen.SeekBarView_height);
             SeekBarTextViewParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            SeekBarView.setMax(21);
 
             startButton.setVisibility(View.VISIBLE);
             startButton.setText(R.string.Stop_test);
-            ScrollView.pauseScroll();
+//            ScrollView.pauseScroll();
             ScrollView.setText(textScrolling);
-            ScrollView.setRndDuration(1,StringStorage.getTextSize());
+            ScrollView.setRndDuration(0,StringStorage.getTextSize());
             ScrollView.startScroll();
             timerStart(stringTimer);
         //stop test and return to the Activiti results
