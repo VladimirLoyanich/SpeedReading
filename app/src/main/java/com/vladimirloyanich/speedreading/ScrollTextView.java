@@ -157,35 +157,83 @@ public int getPozition (){
     public double getRndDuration() {
         return mRndDuration;
     }
-
-    public void setRndDuration(int progress, double StringLength) {
+    //establish milliseconds for a round of scrolling and return standard time to calculate the speed of reading
+    public int setRndDuration(int progress, double StringLength) {
         double time=60000;
+        int standardTime;
         switch (progress){
-            case 0:this.mRndDuration=time*(StringLength/900);break;
-            case 1:this.mRndDuration=time*(StringLength/1000);break;
-            case 2:this.mRndDuration=time*(StringLength/1100);break;
-            case 3:this.mRndDuration=time*(StringLength/1200);break;
-            case 4:this.mRndDuration=time*(StringLength/1300);break;
-            case 5:this.mRndDuration=time*(StringLength/1400);break;
-            case 6:this.mRndDuration=time*(StringLength/1500);break;
-            case 7:this.mRndDuration=time*(StringLength/1600);break;
-            case 8:this.mRndDuration=time*(StringLength/1700);break;
-            case 9:this.mRndDuration=time*(StringLength/1800);break;
-            case 10:this.mRndDuration=time*(StringLength/1900);break;
-            case 11:this.mRndDuration=time*(StringLength/2000);break;
-            case 12:this.mRndDuration=time*(StringLength/2100);break;
-            case 13:this.mRndDuration=time*(StringLength/2200);break;
-            case 14:this.mRndDuration=time*(StringLength/2300);break;
-            case 15:this.mRndDuration=time*(StringLength/2400);break;
-            case 16:this.mRndDuration=time*(StringLength/2500);break;
-            case 17:this.mRndDuration=time*(StringLength/2600);break;
-            case 18:this.mRndDuration=time*(StringLength/2700);break;
-            case 19:this.mRndDuration=time*(StringLength/3000);break;
-            case 20:this.mRndDuration=time*(StringLength/5000);break;
-            case 21:this.mRndDuration=time*(StringLength/10000);break;
-//            default:this.mRndDuration=time*(StringLength/900);break;
+            case 0:{this.mRndDuration=time*(StringLength/900);
+                standardTime=900;
+            };break;
+            case 1:{this.mRndDuration=time*(StringLength/1000);
+                standardTime=1000;
+            };break;
+            case 2:{this.mRndDuration=time*(StringLength/1100);
+                standardTime=1100;
+            };break;
+            case 3:{this.mRndDuration=time*(StringLength/1200);
+                standardTime=1200;
+            };break;
+            case 4:{this.mRndDuration=time*(StringLength/1300);
+                standardTime=1300;
+            };break;
+            case 5:{this.mRndDuration=time*(StringLength/1400);
+                standardTime=1400;
+            };break;
+            case 6:{this.mRndDuration=time*(StringLength/1500);
+                standardTime=1500;
+            };break;
+            case 7:{this.mRndDuration=time*(StringLength/1600);
+                standardTime=1600;
+            };break;
+            case 8:{this.mRndDuration=time*(StringLength/1700);
+                standardTime=1700;
+            };break;
+            case 9:{this.mRndDuration=time*(StringLength/1800);
+                standardTime=1800;
+            };break;
+            case 10:{this.mRndDuration=time*(StringLength/1900);
+                standardTime=1900;
+            };break;
+            case 11:{this.mRndDuration=time*(StringLength/2000);
+                standardTime=2000;
+            };break;
+            case 12:{this.mRndDuration=time*(StringLength/2100);
+                standardTime=2100;
+            };break;
+            case 13:{this.mRndDuration=time*(StringLength/2200);
+                standardTime=2200;
+            };break;
+            case 14:{this.mRndDuration=time*(StringLength/2300);
+                standardTime=2300;
+            };break;
+            case 15:{this.mRndDuration=time*(StringLength/2400);
+                standardTime=2400;
+            };break;
+            case 16:{this.mRndDuration=time*(StringLength/2500);
+                standardTime=2500;
+            };break;
+            case 17:{this.mRndDuration=time*(StringLength/2600);
+                standardTime=2600;
+            };break;
+            case 18:{this.mRndDuration=time*(StringLength/2700);
+                standardTime=2700;
+            };break;
+            case 19:{this.mRndDuration=time*(StringLength/3000);
+                standardTime=3000;
+            };break;
+            case 20:{this.mRndDuration=time*(StringLength/5000);
+                standardTime=5000;
+            };break;
+            case 21:{this.mRndDuration=time*(StringLength/10000);
+                standardTime=10000;
+            };break;
+            default:{this.mRndDuration=time*(StringLength/900);
+                standardTime=900;
+        };break;
         }
 //        this.mRndDuration = duration;
+        return standardTime;
     }
 
     public boolean isPaused() {

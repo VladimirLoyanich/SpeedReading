@@ -25,6 +25,10 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
     private ImageView imageBook;
     private boolean startTest=false;
     private CountDownTimer timer;
+    private long time;
+    private long frozenTime=600;
+    private double standardSpeedTime;
+    private double sumAverageReadSpeed;
     private TextView stringTimer,user,userResult;
     private Button startButton;
     private int counterStartStop=1;
@@ -94,6 +98,9 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
         storageView.removeView(ScrollView);
         storageView.removeView(SeekBarView);
         timer.cancel();
+
+        averageReadSpeed();
+
         stringTimer.setText("");
         startButton.setVisibility(View.GONE);
         startTest=false;
@@ -128,7 +135,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
             startButton.setText(R.string.Stop_test);
 //            ScrollView.pauseScroll();
             ScrollView.setText(textScrolling);
-            ScrollView.setRndDuration(0,StringStorage.getTextSize());
+            standardSpeedTime=ScrollView.setRndDuration(0,StringStorage.getTextSize());
             ScrollView.startScroll();
             timerStart(stringTimer);
         //stop test and return to the Activiti results
@@ -137,7 +144,9 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
             startButton.setText(R.string.Start_test);
             storageView.addView(user);
             storageView.addView(userResult);
-            userResult.setText(getResources().getString(R.string.UserTestResult)+ "");}
+
+            long result=(long)sumAverageReadSpeed/600;
+            userResult.setText(getResources().getString(R.string.UserTestResult)+result+"");}
     }
 
     @Override
@@ -147,24 +156,35 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
 
     public void timerStart(final TextView stringTimer){
         startTest=true;
-        timer = new CountDownTimer(60000,1000){
+        timer = new CountDownTimer(60000,100){
             @Override
             public void onFinish() {
                 finishTest();
             }
             @Override
             public void onTick(long millisUntilFinished) {
-                stringTimer.setText(getResources().getString(R.string.TimerText)+" "+millisUntilFinished/1000+" "+getResources().getString(R.string.TimerTextTime));
+                time=millisUntilFinished/100;
+                    stringTimer.setText(getResources().getString(R.string.TimerText) + " " + millisUntilFinished / 1000 + " " + getResources().getString(R.string.TimerTextTime));
+
+
             }
         };
         timer.start();
+    }
+
+    //calculation of the average read speed
+    private void averageReadSpeed(){
+        double timeDifference=frozenTime-time;
+        frozenTime=time;
+        sumAverageReadSpeed=sumAverageReadSpeed+(standardSpeedTime*timeDifference);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if(startTest){
             ScrollView.pauseScroll();
-            ScrollView.setRndDuration(progress,StringStorage.getTextSize());
+            averageReadSpeed();
+            standardSpeedTime=ScrollView.setRndDuration(progress,StringStorage.getTextSize());
             ScrollView.resumeScroll();
         }
     }
