@@ -1,5 +1,7 @@
 package com.vladimirloyanich.speedreading;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -16,11 +19,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
+
 /**
  * Created by Владимир on 18.06.2015.
  */
 public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBarChangeListener, Animation.AnimationListener {
     private static final String User_Name="com.vladimirloyanich.speedreading.username";
+    Context context;
+
+    private boolean testEndFull=false;
     private Animation animStart, animResume;
     private ImageView imageBook;
     private boolean startTest=false;
@@ -41,7 +48,9 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=this;
         setContentView(R.layout.speed_reading);
+
         //get data from intent
         UserName = getIntent().getStringExtra(User_Name);
         //link initialization
@@ -62,13 +71,13 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
         //create widget text view user name
         user = (TextView) LayoutInflater.from(this).inflate(R.layout.textviewuser, null);
         storageView.addView(user);
-        user.setText(getResources().getString(R.string.UserTest) + " " +UserName);
+        user.setText(getResources().getString(R.string.UserTest)+"\n" +UserName);
         TextViewParams = (RelativeLayout.LayoutParams) user.getLayoutParams();
         TextViewParams.leftMargin = (int) getResources().getDimension(R.dimen.TextViewLeftMargin);
         //create widget text view user Result test
         userResult = (TextView) LayoutInflater.from(this).inflate(R.layout.textviewuserresult, null);
         storageView.addView(userResult);
-        userResult.setText(getResources().getString(R.string.UserTestResult) + "");
+        userResult.setText(getResources().getString(R.string.UserTestResultBefore));
         TextViewResultParams = (RelativeLayout.LayoutParams) userResult.getLayoutParams(); //add
         TextViewResultParams.leftMargin = (int) getResources().getDimension(R.dimen.TextViewLeftMargin);
         TextViewResultParams.topMargin = (int) getResources().getDimension(R.dimen.TextViewTopMargin);
@@ -79,6 +88,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
         counterStartStop++;
         //true if click Start Button
         if((counterStartStop%2)==0){
+            testEndFull=false;
             imageBook.startAnimation(animStart);
             storageView.removeView(user);
             storageView.removeView(userResult);
@@ -95,6 +105,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
     }
     private void finishTest(){
         counterStartStop++;
+        testEndFull=true;
         storageView.removeView(ScrollView);
         storageView.removeView(SeekBarView);
         timer.cancel();
@@ -145,8 +156,15 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
             storageView.addView(user);
             storageView.addView(userResult);
 
-            long result=(long)sumAverageReadSpeed/600;
-            userResult.setText(getResources().getString(R.string.UserTestResult)+result+"");}
+            if (testEndFull){
+                long result=(long)sumAverageReadSpeed/600;
+                userResult.setText(getResources().getString(R.string.UserTestResult)+"\n"+" "+result+" "+getResources().getString(R.string.UserTestResultEndText));
+                viewDialogResult(getResources().getString(R.string.UserTestResult)+"\n"  + result+ " " +getResources().getString(R.string.UserTestResultEndText));}
+            else {
+                userResult.setText(getResources().getString(R.string.UserTestResultFalse)+"");
+                viewDialogResult(getResources().getString(R.string.UserTestResultFalse) + "");}
+
+            }
     }
 
     @Override
@@ -156,7 +174,7 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
 
     public void timerStart(final TextView stringTimer){
         startTest=true;
-        timer = new CountDownTimer(60000,100){
+        timer = new CountDownTimer(5000,100){
             @Override
             public void onFinish() {
                 finishTest();
@@ -187,6 +205,26 @@ public class Speed_reading extends ActionBarActivity implements SeekBar.OnSeekBa
             standardSpeedTime=ScrollView.setRndDuration(progress,StringStorage.getTextSize());
             ScrollView.resumeScroll();
         }
+    }
+
+    public void viewDialogResult(String resultTest){
+        // Created a new Dialog
+        final Dialog dialog = new Dialog(Speed_reading.this);
+        /** 'Window.FEATURE_NO_TITLE' - Used to hide the mTitle */
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        // inflate the layout
+        dialog.setContentView(R.layout.customizeresultdialog);
+        /** Design the dialog in main.xml file */
+        dialog.getWindow().getDecorView().setBackgroundResource(android.R.color.transparent);
+        TextView mMessage = (TextView) dialog.findViewById(R.id.dialogMessage);
+        mMessage.setText(resultTest);
+        Button okButton = (Button) dialog.findViewById(R.id.OkButton);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                dialog.dismiss();
+            }});
+        // Display the dialog
+        dialog.show();
     }
 
     @Override

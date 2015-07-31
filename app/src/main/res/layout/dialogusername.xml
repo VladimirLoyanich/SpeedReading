@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LayoutUsername"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="0dip"
+    android:background="@drawable/alert_bg"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
+    android:paddingBottom="30dip"
+    android:paddingLeft="0dip"
+    android:paddingRight="0dip"
+    android:paddingTop="10dip" >
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
         android:id="@+id/DialogTextView"
         android:text="@string/DialogName"
         android:textSize="@dimen/BigText"
         android:gravity="center_vertical|left"
         android:textStyle="bold"
-        android:background="#ffffc826"
-        android:paddingLeft="5dp" />
-
-
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="15dip"/>
     <EditText
         android:id="@+id/username"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:textSize="@dimen/NormalText"
-        android:hint="@string/username" />
+        android:layout_below="@+id/DialogTextView"
+        android:textSize="@dimen/BigText"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="15dip"
+        android:textStyle="bold"
+        android:lines="1" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/username"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/OkButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="1dip"
+        android:background="@drawable/button"
+        android:text="@string/DialogButtonOk"
+        android:textColor="#FFFFFF"
+        android:layout_weight="1">
+    </Button>
+        <Button
+            android:id="@+id/CancelButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dip"
+            android:layout_marginRight="15dip"
+            android:background="@drawable/button"
+            android:text="@string/DialogButtonCancel"
+            android:textColor="#FFFFFF"
+            android:layout_weight="1">
+        </Button>
+    </LinearLayout>
+</RelativeLayout>
 
-</LinearLayout>

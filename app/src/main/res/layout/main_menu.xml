@@ -53,7 +53,7 @@
                     android:layout_height="30dp"
                     android:text="@string/ButtonUserName"
                     android:textSize="@dimen/NormalText"
-                    android:background="#fff1e7cc"
+                    android:background="@drawable/button"
                     android:textStyle="bold"
                     android:clickable="true"
                     android:layout_marginTop="10dp"
@@ -67,7 +67,7 @@
                     android:text="@string/Main_Button_Settings"
                     android:onClick="Settings"
                     android:textSize="@dimen/NormalText"
-                    android:background="#fff1e7cc"
+                    android:background="@drawable/button"
                     android:alpha="1"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -81,7 +81,7 @@
             android:text="@string/Start_test_speed_reading"
             android:onClick="TestSpeedReading"
             android:textSize="@dimen/NormalText"
-            android:background="#fff1e7cc"
+            android:background="@drawable/button"
             android:alpha="1"
             android:layout_marginTop="10dp"
             android:textStyle="bold" />

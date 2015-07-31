@@ -10,13 +10,18 @@
 
     <string name="DialogName">Имя пользователя </string>
     <string name="ButtonUserName">Изменить имя </string>
-    <string name="DialogButtonOk">Ок: </string>
-    <string name="DialogButtonCancel">Отмена: </string>
+    <string name="DialogButtonOk">Ок </string>
+    <string name="DialogButtonCancel">Отмена </string>
     <string name="UserTest">Тестируемый: </string>
+    <string name="UserTestResultBefore">Для определения скорости чтения\n необходимо пройти тест </string>
     <string name="UserTestResult">Ваша скорость чтения: </string>
+    <string name="UserTestResultEndText">знака в минуту. </string>
+    <string name="UserTestResultFalse">Тест не пройден </string>
+    <string name="TitleResult">Результат теста </string>
     <string name="username">Анонимный </string>
     <string name="signin">Войти </string>
     <string name="cancel">Отмена </string>
+
 
     <string name="TimerText">До конца теста осталось: </string>
     <string name="TimerTextTime">сек. </string>
